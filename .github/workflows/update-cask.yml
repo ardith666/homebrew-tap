@@ -1,0 +1,36 @@
+name: Update Cask
+on:
+  repository_dispatch:
+    types: [release-published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to update to"
+        required: true
+      sha256:
+        description: "SHA256 of the DMG"
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update cask version and sha
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          SHA256="${{ github.event.inputs.sha256 }}"
+          sed -i "s/version \".*\"/version \"$VERSION\"/" Casks/opencode-status-bar.rb
+          sed -i "s/sha256 \".*\"/sha256 \"$SHA256\"/" Casks/opencode-status-bar.rb
+      - name: Commit and push
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add Casks/opencode-status-bar.rb
+          git commit -m "chore: bump to v$VERSION"
+          git push
