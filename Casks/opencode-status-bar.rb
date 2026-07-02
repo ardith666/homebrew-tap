@@ -8,7 +8,7 @@ cask "opencode-status-bar" do
   desc "macOS menu bar app that shows OpenCode live status at a glance"
   homepage "https://github.com/ardith666/opencode-status-bar"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "OpenCodeStatusBar.app"
 
