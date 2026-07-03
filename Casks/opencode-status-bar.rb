@@ -1,6 +1,6 @@
 cask "opencode-status-bar" do
-  version "1.1.2"
-  sha256 "c5ae1ec6eccca73c6dcbecc2fe0754667135a59b9e9a2f4d29043df76d8c3f16"
+  version "1.1.3"
+  sha256 "19f9b0c013a6943f1d7869d5208fe2244bc9bec5e7e660c5148d2a7f8cd3d46d"
 
   url "https://github.com/ardith666/opencode-status-bar/releases/download/v#{version}/OpenCodeStatusBar-#{version}.dmg",
       verified: "github.com/ardith666/opencode-status-bar/"
